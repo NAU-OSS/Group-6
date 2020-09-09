@@ -21,7 +21,7 @@ int main()
     //jusge if the string is real number
     if(isRealNumber(number)){
         printf("The string is not real number. Terminate the program.\n");
-        exit(0);
+        return 0;
     }
     else{
       printf("The string is real number. The program continues.\n");

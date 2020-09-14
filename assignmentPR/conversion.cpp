@@ -93,3 +93,4 @@ char* mantissa(char numString[],int index){
     return numerator;
 }
 
+//for codeReview

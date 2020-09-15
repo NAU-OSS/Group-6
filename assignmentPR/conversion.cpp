@@ -4,8 +4,9 @@
 #define TRUE 1
 #define FALSE 0
 //Author:Group6_Shangyi Group6_Ziang
-//Edit date: Sep 8,2020
+//Edit date: Sep 15,2020
 //Declare function
+int findPoint(char numString[]);
 int isRealNumber(char numString[]);
 char* characteristic(char numString[],int index);
 char* mantissa(char numString[],int index);
@@ -18,31 +19,15 @@ char numerator[sizeof(number)];
 //The main function
 int main()
 {
-    //jusge if the string is real number
-    if(isRealNumber(number)){
-        printf("The string is not real number. Terminate the program.\n");
-        return 0;
-    }
-    else{
-      printf("The string is real number. The program continues.\n");
-    }
-    
     //The pointers and array for print
     char* character;
     char* numerator;
     char denominator[sizeof(number)] = "1";
     
     //Declare the indexes used in the main function
-    int index,midindex = 0,denIndex = 1;
+    int index,midindex,denIndex = 1;
     
-    //I use for loop to find the position of '.' in the string
-    for(index = 0; index < sizeof(number); index++)
-    {
-        if(number[index] == '.')
-        {
-            midindex = index;
-        }
-    }
+    midindex = findPoint(number);
 
     //The temp is the magnitude of denominator
     //Why -2 ? That's because the length of '.' and '\0'
@@ -54,13 +39,42 @@ int main()
         temp--;
     }
 
-    //Print what is in the sting
+    //jusge if the string is real number
+    if(isRealNumber(number)){
+        printf("The string is not real number. Terminate the program.\n");
+        return 0;
+    }
+    else{
+      printf("The string is real number. The program continues.\n");
+      //Print what is in the sting
         character = characteristic(number,midindex);
         numerator = mantissa(number,midindex);
         printf("The characteristic for the number %s is %s and the mantissa is %s over %s.\n",
-        number,character,numerator,denominator);
+        number,character,numerator,denominator);  
+    }
+    
     return 0;
  }
+
+
+//I use for loop to find the position of '.' in the string
+ int findPoint(char numString[]){
+ 	int midindex = 0;
+ 	int index = 0;
+ 	for(index; index < sizeof(number); index++)
+	{
+		if(number[index] == '.')
+		{
+			midindex = index;
+			return midindex;
+		}else{
+			midindex = index;
+		}
+	}
+	return midindex;
+ }
+
+
 
 int isRealNumber(char numString[]){
     int index = 0;
